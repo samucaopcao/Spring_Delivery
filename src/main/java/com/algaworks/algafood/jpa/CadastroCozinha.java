@@ -33,10 +33,19 @@ public class CadastroCozinha {
 	}
 
 	/**
-	 * Método de busca por id
+	 * Método de busca de cozinha por id
 	 */
 	public Cozinha buscar(Long id) {
 		return manager.find(Cozinha.class, id);
+	}
+
+	/**
+	 * Método para exlusão de uma cozinha
+	 */
+	@Transactional
+	public void remover(Cozinha cozinha) {
+		cozinha = buscar(cozinha.getId());
+		manager.remove(cozinha);
 	}
 
 }
