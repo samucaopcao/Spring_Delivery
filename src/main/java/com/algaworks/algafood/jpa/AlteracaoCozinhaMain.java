@@ -6,27 +6,25 @@ import org.springframework.context.ApplicationContext;
 
 import com.algaworks.algafood.AlgafoodApiApplication;
 import com.algaworks.algafood.domain.model.Cozinha;
-
-
+import com.algaworks.algafood.domain.repository.CozinhaRepository;
 
 public class AlteracaoCozinhaMain {
 
 	public static void main(String[] args) {
 
-		//Tirando o contexto web da aplicação
+		// Tirando o contexto web da aplicação
 		ApplicationContext applicationContext = new SpringApplicationBuilder(AlgafoodApiApplication.class)
 				.web(WebApplicationType.NONE).run(args);
 
-		CadastroCozinha cadastroCozinha = applicationContext.getBean(CadastroCozinha.class);
-
+		CozinhaRepository cozinhaRepository = applicationContext.getBean(CozinhaRepository.class);
 
 		Cozinha cozinha = new Cozinha();
 		cozinha.setId(1L);
 		cozinha.setNome("Russa");
-		
-		cadastroCozinha.salvar(cozinha);
-		
-		System.out.printf("Item alterado com sucesso: %d - %s\n", cozinha.getId(),cozinha.getNome());
+
+		cozinhaRepository.adicionar(cozinha);
+
+		System.out.printf("Item alterado com sucesso: %d - %s\n", cozinha.getId(), cozinha.getNome());
 
 	}
 
