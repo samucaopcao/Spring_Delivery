@@ -27,11 +27,14 @@ public class CadastroCozinha {
 	 * Método para inserção de uma cozinha
 	 */
 	@Transactional
-	public Cozinha adicionar(Cozinha cozinha) {
+	public Cozinha salvar(Cozinha cozinha) {
 		return manager.merge(cozinha);
 
 	}
 
+	/**
+	 * Método de busca por id
+	 */
 	public Cozinha buscar(Long id) {
 		return manager.find(Cozinha.class, id);
 	}
