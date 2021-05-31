@@ -16,14 +16,24 @@ public class CadastroCozinha {
 	@PersistenceContext
 	private EntityManager manager;
 
-	//Método que retorna todos as cozinhas em uma lista 
+	/**
+	 * Método que retorna todos as cozinhas em uma lista
+	 */
 	public List<Cozinha> listar() {
 		return manager.createQuery("from Cozinha", Cozinha.class).getResultList();
 	}
+
+	/**
+	 * Método para inserção de uma cozinha
+	 */
 	@Transactional
-	public Cozinha adicionar(Cozinha cozinha){
+	public Cozinha adicionar(Cozinha cozinha) {
 		return manager.merge(cozinha);
-		
+
+	}
+
+	public Cozinha buscar(Long id) {
+		return manager.find(Cozinha.class, id);
 	}
 
 }
