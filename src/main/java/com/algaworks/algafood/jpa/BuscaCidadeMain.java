@@ -1,14 +1,16 @@
 package com.algaworks.algafood.jpa;
 
+import java.util.List;
+
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationContext;
 
 import com.algaworks.algafood.AlgafoodApiApplication;
-import com.algaworks.algafood.domain.model.Cozinha;
-import com.algaworks.algafood.domain.repository.CozinhaRepository;
+import com.algaworks.algafood.domain.model.Cidade;
+import com.algaworks.algafood.domain.repository.CidadeRepository;
 
-public class AlteracaoCozinhaMain {
+public class BuscaCidadeMain {
 
 	public static void main(String[] args) {
 
@@ -16,16 +18,13 @@ public class AlteracaoCozinhaMain {
 		ApplicationContext applicationContext = new SpringApplicationBuilder(AlgafoodApiApplication.class)
 				.web(WebApplicationType.NONE).run(args);
 
-		CozinhaRepository cozinhaRepository = applicationContext.getBean(CozinhaRepository.class);
+		CidadeRepository cidadeRepository = applicationContext.getBean(CidadeRepository.class);
 
-		Cozinha cozinha = new Cozinha();
-		cozinha.setId(1L);
-		cozinha.setNome("Russa");
+		List<Cidade> cidades = cidadeRepository.listar();
+		for (Cidade cidade : cidades) {
+			System.out.println(cidade.getNome());
 
-		cozinhaRepository.salvar(cozinha);
-
-		System.out.printf("Item alterado com sucesso: %d - %s\n", cozinha.getId(), cozinha.getNome());
-
+		}
 	}
 
 }

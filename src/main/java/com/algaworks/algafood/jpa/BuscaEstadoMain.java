@@ -8,9 +8,11 @@ import org.springframework.context.ApplicationContext;
 
 import com.algaworks.algafood.AlgafoodApiApplication;
 import com.algaworks.algafood.domain.model.Cozinha;
+import com.algaworks.algafood.domain.model.Estado;
 import com.algaworks.algafood.domain.repository.CozinhaRepository;
+import com.algaworks.algafood.domain.repository.EstadoRepository;
 
-public class InclusaoCozinhaMain {
+public class BuscaEstadoMain {
 
 	public static void main(String[] args) {
 
@@ -18,20 +20,13 @@ public class InclusaoCozinhaMain {
 		ApplicationContext applicationContext = new SpringApplicationBuilder(AlgafoodApiApplication.class)
 				.web(WebApplicationType.NONE).run(args);
 
-		CozinhaRepository cozinhaRepository = applicationContext.getBean(CozinhaRepository.class);
+		EstadoRepository estadoRepository = applicationContext.getBean(EstadoRepository.class);
 
-		Cozinha cozinha1 = new Cozinha();
-		cozinha1.setNome("Brasileira");
+		List<Estado> estados = estadoRepository.listar();
+		for (Estado estado : estados) {
+			System.out.println(estado.getNome());
 
-		Cozinha cozinha2 = new Cozinha();
-		cozinha2.setNome("Peruana");
-
-		cozinha1 = cozinhaRepository.salvar(cozinha1);
-		cozinha2 = cozinhaRepository.salvar(cozinha2);
-
-		System.out.printf("%d - %s\n", cozinha1.getId(), cozinha1.getNome());
-		System.out.printf("%d - %s\n", cozinha2.getId(), cozinha2.getNome());
-
+		}
 	}
 
 }

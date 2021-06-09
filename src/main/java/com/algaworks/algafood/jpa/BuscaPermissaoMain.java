@@ -1,14 +1,16 @@
 package com.algaworks.algafood.jpa;
 
+import java.util.List;
+
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationContext;
 
 import com.algaworks.algafood.AlgafoodApiApplication;
-import com.algaworks.algafood.domain.model.Cozinha;
-import com.algaworks.algafood.domain.repository.CozinhaRepository;
+import com.algaworks.algafood.domain.model.Permissao;
+import com.algaworks.algafood.domain.repository.PermissaoRepository;
 
-public class AlteracaoCozinhaMain {
+public class BuscaPermissaoMain {
 
 	public static void main(String[] args) {
 
@@ -16,16 +18,13 @@ public class AlteracaoCozinhaMain {
 		ApplicationContext applicationContext = new SpringApplicationBuilder(AlgafoodApiApplication.class)
 				.web(WebApplicationType.NONE).run(args);
 
-		CozinhaRepository cozinhaRepository = applicationContext.getBean(CozinhaRepository.class);
+		PermissaoRepository permissaoRepository = applicationContext.getBean(PermissaoRepository.class);
 
-		Cozinha cozinha = new Cozinha();
-		cozinha.setId(1L);
-		cozinha.setNome("Russa");
+		List<Permissao> permissoes = permissaoRepository.listar();
+		for (Permissao permissao : permissoes) {
+			System.out.println(permissao.getNome() + " com descrição : " + permissao.getDescricao());
 
-		cozinhaRepository.salvar(cozinha);
-
-		System.out.printf("Item alterado com sucesso: %d - %s\n", cozinha.getId(), cozinha.getNome());
-
+		}
 	}
 
 }
