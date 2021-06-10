@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@JsonRootName("Teste_Cozinha")
+@JsonRootName("cozinha_por_id")
 @Data // Anotação do Lombok que representa o @Getter @Setter e @EqualsAndHashCode
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
