@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Component;
 
 import com.algaworks.algafood.domain.model.Cozinha;
@@ -48,8 +49,15 @@ public class CozinhaRepositoryImpl implements CozinhaRepository {
 	 */
 	@Override
 	@Transactional
-	public void remover(Cozinha cozinha) {
-		cozinha = buscar(cozinha.getId());
+	public void remover(Long id) {
+		Cozinha cozinha = buscar(id);
+		if (cozinha == null) {
+			// Excessão EmptyResultDataAccessException é usada quando o resultado de uma
+			// busca pode retornar vazio, coloco como parâmetro a quantidade de resultados
+			// que esperava.
+			throw new EmptyResultDataAccessException(1);
+		}
+
 		manager.remove(cozinha);
 	}
 
