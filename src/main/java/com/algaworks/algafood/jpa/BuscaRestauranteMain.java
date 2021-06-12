@@ -20,7 +20,7 @@ public class BuscaRestauranteMain {
 
 		RestauranteRepository restauranteRepository = applicationContext.getBean(RestauranteRepository.class);
 
-		List<Restaurante> restaurantes = restauranteRepository.todos();
+		List<Restaurante> restaurantes = restauranteRepository.listar();
 		for (Restaurante restaurante : restaurantes) {
 			System.out.println(restaurante.getNome() + " com taxa de frete de R$ " + restaurante.getTaxaFrete()
 					+ " com a Cozinha: " + restaurante.getCozinha().getNome());

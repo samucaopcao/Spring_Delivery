@@ -10,11 +10,11 @@ import com.algaworks.algafood.domain.model.Restaurante;
 @Repository
 public interface RestauranteRepository {
 
-	List<Restaurante> todos();
+	List<Restaurante> listar();
 
-	Restaurante porId(Long id);
+	Restaurante buscar(Long id);
 
-	Restaurante adicionar(Restaurante restaurante);
+	Restaurante salvar(Restaurante restaurante);
 
 	void remover(Restaurante restaurante);
 }

@@ -33,8 +33,8 @@ public class InclusaoRestauranteMain {
 		restaurante2.setNome("Girafas");
 		restaurante2.setTaxaFrete(valor);
 
-		restaurante1 = restauranteRepository.adicionar(restaurante1);
-		restaurante2 = restauranteRepository.adicionar(restaurante2);
+		restaurante1 = restauranteRepository.salvar(restaurante1);
+		restaurante2 = restauranteRepository.salvar(restaurante2);
 
 		System.out.println("Id: " + restaurante1.getId() + " Restaurante: " + restaurante1.getNome() + " e Taxa de Frete R$ " + taxaFrete2.format(valor1));
 		System.out.println("Id: " + restaurante2.getId() + " Restaurante: " + restaurante2.getNome() + " e Taxa de Frete R$ " + taxaFrete1.format(valor));

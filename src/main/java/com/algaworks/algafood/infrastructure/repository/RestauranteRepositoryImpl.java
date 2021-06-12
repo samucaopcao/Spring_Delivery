@@ -21,7 +21,7 @@ public class RestauranteRepositoryImpl implements RestauranteRepository {
 	 * Método que retorna todos restaurantes em uma lista
 	 */
 	@Override
-	public List<Restaurante> todos() {
+	public List<Restaurante> listar() {
 		return manager.createQuery("from Restaurante", Restaurante.class).getResultList();
 	}
 
@@ -30,7 +30,7 @@ public class RestauranteRepositoryImpl implements RestauranteRepository {
 	 */
 	@Override
 	@Transactional
-	public Restaurante adicionar(Restaurante restaurante) {
+	public Restaurante salvar(Restaurante restaurante) {
 		return manager.merge(restaurante);
 
 	}
@@ -39,7 +39,7 @@ public class RestauranteRepositoryImpl implements RestauranteRepository {
 	 * Método de busca de um restaurante por id
 	 */
 	@Override
-	public Restaurante porId(Long id) {
+	public Restaurante buscar(Long id) {
 		return manager.find(Restaurante.class, id);
 	}
 
@@ -49,7 +49,7 @@ public class RestauranteRepositoryImpl implements RestauranteRepository {
 	@Override
 	@Transactional
 	public void remover(Restaurante cozinha) {
-		cozinha = porId(cozinha.getId());
+		cozinha = buscar(cozinha.getId());
 		manager.remove(cozinha);
 	}
 

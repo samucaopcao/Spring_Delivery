@@ -18,7 +18,7 @@ public class ConsultaRestauranteMain {
 
 		RestauranteRepository restaurantes = applicationContext.getBean(RestauranteRepository.class);
 
-		Restaurante todosRestaurantes = restaurantes.porId(1L);
+		Restaurante todosRestaurantes = restaurantes.buscar(1L);
 
 		System.out.println(todosRestaurantes.getNome() 
 				+ " com taxa de frete R$ " + todosRestaurantes.getTaxaFrete());

@@ -28,7 +28,7 @@ public class AlteracaoRestauranteMain {
 		restaurante.setNome("Mc Donalds");
 		restaurante.setTaxaFrete(taxaFrete);
 
-		cozinhaRepository.adicionar(restaurante);
+		cozinhaRepository.salvar(restaurante);
 
 		System.out.println("Item alterado com sucesso: ID " + restaurante.getId() + " - Nome: " + restaurante.getNome()
 				+ " - Taxa de Frete : R$ " + NumberFormat.getCurrencyInstance().format(taxaFrete));
