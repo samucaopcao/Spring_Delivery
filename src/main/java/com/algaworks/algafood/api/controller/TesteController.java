@@ -44,6 +44,12 @@ public class TesteController {
 		return restauranteRepository.findByTaxaFreteBetween(taxaInicial, taxaFinal);
 	}
 
+	// Este usa a anotação @Query no RestauranteRepository
+	@GetMapping("/restaurantes/por-nome-cozinhaId-query")
+	public List<Restaurante> restaurantePorNomeCozinhaId2(String nome, Long cozinhaId) {
+		return restauranteRepository.consultarPorNome(nome, cozinhaId);
+	}
+
 	@GetMapping("/restaurantes/por-nome-cozinhaId")
 	public List<Restaurante> restaurantePorNomeCozinhaId(String nome, Long cozinhaId) {
 		return restauranteRepository.findByNomeContainingAndCozinhaId(nome, cozinhaId);
