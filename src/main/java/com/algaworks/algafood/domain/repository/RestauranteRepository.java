@@ -12,11 +12,12 @@ import org.springframework.stereotype.Repository;
 import com.algaworks.algafood.domain.model.Restaurante;
 
 @Repository
-public interface RestauranteRepository extends JpaRepository<Restaurante, Long> {
+public interface RestauranteRepository 
+extends JpaRepository<Restaurante, Long>,RestauranteRepositoryQueries {
 
 	List<Restaurante> findByTaxaFreteBetween(BigDecimal taxaInicial, BigDecimal taxaFinal);
 
-	//@Query(" From Restaurante Where nome Like %:nome% and cozinha.id = :id  ")
+	// @Query(" From Restaurante Where nome Like %:nome% and cozinha.id = :id ")
 	List<Restaurante> consultarPorNome(String nome, @Param("id") Long cozinha);
 
 	List<Restaurante> findByNomeContainingAndCozinhaId(String nome, Long cozinha);
@@ -29,4 +30,5 @@ public interface RestauranteRepository extends JpaRepository<Restaurante, Long> 
 
 	// Retorna quantidade de Restaurantes que uma cozinha específica tem.
 	int countByCozinhaId(Long cozinha);
+
 }
